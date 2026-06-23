@@ -1,0 +1,17 @@
+# Järjestelmätiedostot
+.DS_Store
+Thumbs.db
+
+# Editorit
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Väliaikaiset
+*.tmp
+*.log
+
+# Projektikohtaiset
+test/
+temp/
