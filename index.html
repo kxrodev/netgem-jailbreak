@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netgem N7950 Alpine Linux -modi</title>
+    <style>
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background-color: #0a0a0a;
+            padding: 50px 60px;
+            border-radius: 12px;
+            border: 1px solid #1a1a1a;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1 {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #ffffff;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 span {
+            color: #888888;
+            font-weight: 300;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 400;
+            color: #ffffff;
+            margin-top: 45px;
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 400;
+            color: #cccccc;
+            margin-top: 30px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: #b0b0b0;
+            margin-bottom: 16px;
+        }
+
+        a {
+            color: #aaaaaa;
+            text-decoration: none;
+            border-bottom: 1px dotted #333333;
+        }
+
+        a:hover {
+            color: #ffffff;
+            border-bottom-color: #666666;
+        }
+
+        /* ===== FOUNDER BANNER ===== */
+        .founder-banner {
+            background-color: #0d0d0d;
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .founder-banner .label {
+            color: #666666;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .founder-banner .name {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .founder-banner .name span {
+            color: #555555;
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* ===== LINKS SECTION ===== */
+        .links-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0 40px 0;
+            padding: 20px 24px;
+            background-color: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+        }
+
+        .links-section .link-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #888888;
+            font-size: 14px;
+        }
+
+        .links-section .link-item a {
+            color: #cccccc;
+            border-bottom: 1px dotted #444444;
+        }
+
+        .links-section .link-item a:hover {
+            color: #ffffff;
+            border-bottom-color: #888888;
+        }
+
+        /* ===== TABLES ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 30px 0;
+            font-size: 15px;
+        }
+
+        th {
+            background-color: #141414;
+            color: #ffffff;
+            font-weight: 400;
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #1a1a1a;
+            color: #c0c0c0;
+        }
+
+        tr:hover td {
+            background-color: #0f0f0f;
+        }
+
+        /* ===== CODE BLOCKS ===== */
+        .code-block {
+            background-color: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 20px 0 25px 0;
+            overflow-x: auto;
+            font-family: 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            color: #d4d4d4;
+            position: relative;
+        }
+
+        .code-block .cmd {
+            color: #66cc66;
+        }
+
+        .code-block .comment {
+            color: #666666;
+            font-style: italic;
+        }
+
+        .code-block .output {
+            color: #aaaaaa;
+        }
+
+        /* ===== INFO BOXES ===== */
+        .warning-box {
+            background-color: #111111;
+            border-left: 3px solid #666666;
+            padding: 16px 22px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box strong {
+            color: #ffffff;
+        }
+
+        .success-box {
+            background-color: #0d0d0d;
+            border-left: 3px solid #888888;
+            padding: 16px 22px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .info-box {
+            background-color: #0a0a0a;
+            border-left: 3px solid #555555;
+            padding: 16px 22px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        /* ===== GRID FOR MODELS ===== */
+        .model-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0 30px 0;
+        }
+
+        .model-card {
+            background-color: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 18px 20px;
+            transition: border-color 0.2s;
+        }
+
+        .model-card:hover {
+            border-color: #444444;
+        }
+
+        .model-card h4 {
+            color: #ffffff;
+            font-weight: 400;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .model-card p {
+            color: #888888;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .model-card .status {
+            color: #666666;
+            font-size: 13px;
+            margin-top: 6px;
+            display: inline-block;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px solid #1a1a1a;
+            text-align: center;
+            font-size: 14px;
+            color: #555555;
+            letter-spacing: 1px;
+        }
+
+        .footer strong {
+            color: #777777;
+            font-weight: 400;
+        }
+
+        .footer .credit {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #3a3a3a;
+            letter-spacing: 1px;
+        }
+
+        .footer .credit a {
+            color: #555555;
+            border-bottom: none;
+        }
+
+        .footer .credit a:hover {
+            color: #888888;
+        }
+
+        .footer .license {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #333333;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 700px) {
+            .container {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 19px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            td, th {
+                padding: 8px 10px;
+            }
+
+            .code-block {
+                font-size: 12px;
+                padding: 14px 16px;
+            }
+
+            .model-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .founder-banner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .founder-banner .name {
+                font-size: 20px;
+            }
+
+            .links-section {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 16px 10px;
+            }
+
+            .container {
+                padding: 18px 12px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <h1>NETGEM N7950 <span>// ALPINE LINUX</span></h1>
+
+    <!-- ===== FOUNDER BANNER ===== -->
+    <div class="founder-banner">
+        <span class="label">🔍 founded & documented by</span>
+        <span class="name">KXRO <span>// 2026</span></span>
+    </div>
+
+    <!-- ===== LINKS SECTION ===== -->
+    <div class="links-section">
+        <span class="link-item">
+            📦 <a href="https://github.com/kxrodev/netgem-jailbreak" target="_blank">GitHub: kxrodev/netgem-jailbreak</a>
+        </span>
+        <span class="link-item">
+            💬 <a href="https://discord.com/users/kxrodev" target="_blank">Discord: @kxrodev</a>
+        </span>
+    </div>
+
+    <p style="color: #888888; font-size: 17px; margin-bottom: 30px;">
+        Täydellinen opas Elisa Viihde -boksin vapauttamiseen.
+    </p>
+
+    <!-- ===== SECTION 1 ===== -->
+    <h2>01. Mitä tarvitset</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tarvike</th>
+                <th>Selitys</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Elisa Viihde -boksi (Netgem N7950)</td>
+                <td>Projektiin tarvittava laite</td>
+            </tr>
+            <tr>
+                <td>TTL-sarja-adapteri (3.3V)</td>
+                <td>Yhteys tietokoneen ja boksin välille</td>
+            </tr>
+            <tr>
+                <td>Paperclipit (tai hyppylangat)</td>
+                <td>UART-pinnien kytkentä</td>
+            </tr>
+            <tr>
+                <td>Tietokone (Linux)</td>
+                <td>Nobara, Ubuntu, tms.</td>
+            </tr>
+            <tr>
+                <td>8GB+ USB-tikku</td>
+                <td>Alpine Linuxin asennus</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ===== SECTION 2 ===== -->
+    <h2>02. Avaa boksi</h2>
+
+    <ol style="color: #b0b0b0; padding-left: 22px; margin-bottom: 20px;">
+        <li style="margin-bottom: 8px;">Irrota virtajohto ja kaikki kaapelit.</li>
+        <li style="margin-bottom: 8px;">Käännä boksi ympäri ja irrota kumitassut (niiden alla on ruuvit).</li>
+        <li style="margin-bottom: 8px;">Poista ruuvit.</li>
+        <li style="margin-bottom: 8px;">Irrota kansi varovasti.</li>
+    </ol>
+
+    <div class="warning-box">
+        <strong>⚠️ Huomio:</strong> Avaa boksi varovasti, jotta et riko mitään. Jos olet epävarma, katso video-ohjeita.
+    </div>
+
+    <!-- ===== SECTION 3 ===== -->
+    <h2>03. Etsi UART-pinnit</h2>
+
+    <p>Etsi piirilevyltä 4 pinniä rivissä. Ne voivat olla merkitsemättömiä, mutta yleensä niissä lukee:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Merkintä</th>
+                <th>Toiminto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>GND</code></td>
+                <td>Maa (ground)</td>
+            </tr>
+            <tr>
+                <td><code>TX</code></td>
+                <td>Lähetä (boksi → tietokone)</td>
+            </tr>
+            <tr>
+                <td><code>RX</code></td>
+                <td>Vastaanota (tietokone → boksi)</td>
+            </tr>
+            <tr>
+                <td><code>VCC</code></td>
+                <td>Älä kytke (voi rikkoa boksin)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ===== SECTION 4 ===== -->
+    <h2>04. Kytke TTL-adapteri</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>TTL-adapteri</th>
+                <th>Paperclip</th>
+                <th>Boksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>GND</code></td>
+                <td>→</td>
+                <td><code>GND</code></td>
+            </tr>
+            <tr>
+                <td><code>TX</code></td>
+                <td>→</td>
+                <td><code>RX</code></td>
+            </tr>
+            <tr>
+                <td><code>RX</code></td>
+                <td>→</td>
+                <td><code>TX</code></td>
+            </tr>
+            <tr>
+                <td><code>VCC</code></td>
+                <td>→</td>
+                <td><strong style="color:#666;">Ei kytkentää</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="warning-box">
+        <strong>⚠️ Tärkeää:</strong> Älä koskaan kytke VCC:tä – se voi rikkoa boksin. Kiinnitä paperclipit teipillä, jotta ne eivät liiku.
+    </div>
+
+    <!-- ===== SECTION 5 ===== -->
+    <h2>05. Yhdistä tietokoneeseen</h2>
+
+    <p>Avaa terminaali Linuxissa:</p>
+
+    <div class="code-block">
+        <span class="cmd">screen /dev/ttyUSB0 115200</span>
+    </div>
+
+    <p>Jos ei toimi, kokeile:</p>
+
+    <div class="code-block">
+        <span class="cmd">sudo screen /dev/ttyUSB0 115200</span>
+    </div>
+
+    <!-- ===== SECTION 6 ===== -->
+    <h2>06. Pysäytä U-Boot</h2>
+
+    <p>Käynnistä boksi ja katso terminaalia:</p>
+
+    <div class="code-block">
+        <span class="output">U-Boot 2015.01</span><br>
+        <span class="output">Hit any key to stop autoboot: 3 2 1</span>
+    </div>
+
+    <p><strong>Paina mitä tahansa näppäintä</strong> ennen kuin laskuri menee nollaan.</p>
+
+    <!-- ===== SECTION 7 ===== -->
+    <h2>07. Asenna Linux niin, että voit vaihtaa Elisan ja Linuxin välillä</h2>
+
+    <h3>Vaihe 1: Asenna Alpine USB:lle</h3>
+
+    <p>Kun olet U-Bootissa, aseta USB-tikku kiinni ja boottaa Alpine:</p>
+
+    <div class="code-block">
+        <span class="cmd">usb start</span><br>
+        <span class="cmd">fatload usb 0:1 0x4000000 /boot/uImage</span><br>
+        <span class="cmd">setenv bootargs console=ttyAS0,115200 root=/dev/sda2 rootwait</span><br>
+        <span class="cmd">bootm 0x4000000</span>
+    </div>
+
+    <h3>Vaihe 2: Asenna Alpine pysyvästi USB:lle</h3>
+
+    <div class="code-block">
+        <span class="cmd">setup-alpine</span>
+    </div>
+
+    <p>Valitse asennuskohteeksi USB-tikku (esim. <code>/dev/sda</code>).</p>
+
+    <h3>Vaihe 3: Määritä U-Boot valitsemaan käyttöjärjestelmä</h3>
+
+    <p>Aseta U-Bootiin boot-asetukset, jotka tarkistavat USB-tikun ensin:</p>
+
+    <div class="code-block">
+        <span class="cmd">setenv bootcmd 'usb start; fatload usb 0:1 0x4000000 /boot/uImage && bootm 0x4000000; nand read 0x4000000 0x200000 0x500000; bootm 0x4000000'</span><br>
+        <span class="cmd">saveenv</span><br>
+        <span class="cmd">reset</span>
+    </div>
+
+    <div class="info-box">
+        <strong>💡 Miten tämä toimii:</strong>
+        <ul style="color: #b0b0b0; margin-top: 8px; padding-left: 20px;">
+            <li>Jos USB-tikku on kiinni, boksi boottaa Alpine Linuxin.</li>
+            <li>Jos USB-tikkua ei ole kiinni, boksi boottaa Elisan.</li>
+            <li>Näin voit vaihtaa järjestelmää vain USB-tikkua vaihtamalla.</li>
+        </ul>
+    </div>
+
+    <h3>Vaihe 4: Vaihda Elisan ja Linuxin välillä</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Mitä haluat</th>
+                <th>Mitä teet</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Käynnistä Alpine Linux</td>
+                <td>Aseta USB-tikku kiinni ja käynnistä boksi</td>
+            </tr>
+            <tr>
+                <td>Käynnistä Elisa</td>
+                <td>Poista USB-tikku ja käynnistä boksi</td>
+            </tr>
+            <tr>
+                <td>Vaihda pysyvästi Linuxiin</td>
+                <td>Asenna Alpine NAND-muistiin (edistyneille)</td>
+            </tr>
+            <tr>
+                <td>Palauta Elisa</td>
+                <td>Palauta alkuperäinen firmware NAND-muistiin</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="warning-box">
+        <strong>⚠️ Varoitus:</strong> Älä asenna Linuxia NAND-muistiin, ellet ole varma, mitä teet. USB-bootti on turvallisin tapa.
+    </div>
+
+    <!-- ===== SECTION 8 ===== -->
+    <h2>08. Muut Elisa-mallit (epätestatut)</h2>
+
+    <p>Nämä Elisa-mallit voisivat olla modattavissa samalla periaatteella, mutta niitä ei ole testattu.</p>
+
+    <div class="model-grid">
+        <div class="model-card">
+            <h4>📺 Netgem N7900</h4>
+            <p>Vanhempi Elisa-malli. Voi olla samanlainen UART.</p>
+            <span class="status">Status: Epätestattu</span>
+        </div>
+        <div class="model-card">
+            <h4>📡 Netgem N7000</h4>
+            <p>Vanhempi Elisa-malli. UART saattaa olla eri paikassa.</p>
+            <span class="status">Status: Epätestattu</span>
+        </div>
+        <div class="model-card">
+            <h4>📦 Elisa Viihde (vanha malli)</h4>
+            <p>Elisan vanhin malli. Voi olla erilainen arkkitehtuuri.</p>
+            <span class="status">Status: Epätestattu</span>
+        </div>
+        <div class="model-card">
+            <h4>🖥️ Elisa Viihde (uusi malli)</h4>
+            <p>Elisan uusin malli. Saattaa olla erilainen.</p>
+            <span class="status">Status: Epätestattu</span>
+        </div>
+        <div class="model-card">
+            <h4>📻 Elisa Viihde (Android-malli)</h4>
+            <p>Elisan Android-pohjainen malli. UART voi olla erilainen.</p>
+            <span class="status">Status: Epätestattu</span>
+        </div>
+        <div class="model-card">
+            <h4>🎮 Elisa Viihde (pelimalli)</h4>
+            <p>Harvinainen malli, jossa voi olla erilainen UART.</p>
+            <span class="status">Status: Epätestattu</span>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <strong>💡 Huomio:</strong> Nämä ovat vain ideoita. Jokainen malli on erilainen, ja modaaminen vaatii omaa tutkimusta. Testaa omalla vastuulla.
+    </div>
+
+    <!-- ===== SECTION 9 ===== -->
+    <h2>09. Virheilmoitukset</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ongelma</th>
+                <th>Ratkaisu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ei tekstiä terminaalissa</td>
+                <td>Vaihda TX ja RX keskenään</td>
+            </tr>
+            <tr>
+                <td>Roskamerkkejä</td>
+                <td>Kokeile baud-nopeutta 57600 tai 9600</td>
+            </tr>
+            <tr>
+                <td>Paperclipit liikkuvat</td>
+                <td>Kiinnitä ne teipillä</td>
+            </tr>
+            <tr>
+                <td>USB-tikkua ei löydy</td>
+                <td>Tarkista, että se on FAT32-muotoinen</td>
+            </tr>
+            <tr>
+                <td>Bootti ei onnistu USB:ltä</td>
+                <td>Tarkista, että uImage on oikeassa paikassa</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ===== SECTION 10 ===== -->
+    <h2>10. Yhteenveto</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Toiminto</th>
+                <th>Tila</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Avaa boksi</td>
+                <td style="color: #66cc66;">✅</td>
+            </tr>
+            <tr>
+                <td>Kytke UART</td>
+                <td style="color: #66cc66;">✅</td>
+            </tr>
+            <tr>
+                <td>Pysäytä U-Boot</td>
+                <td style="color: #66cc66;">✅</td>
+            </tr>
+            <tr>
+                <td>Asenna Alpine USB:lle</td>
+                <td style="color: #66cc66;">✅</td>
+            </tr>
+            <tr>
+                <td>Vaihda Elisan ja Linuxin välillä</td>
+                <td style="color: #66cc66;">✅</td>
+            </tr>
+       
