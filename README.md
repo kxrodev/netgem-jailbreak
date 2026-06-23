@@ -4,6 +4,18 @@
 
 **Founded & documented by KXRO**
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+---
+
+## 📋 Sisällysluettelo
+
+- [Mitä tämä on](#mitä-tämä-on)
+- [Mitä tarvitset](#mitä-tarvitset)
+- [Ohjeet](#ohjeet)
+- [Vaihtaminen Elisan ja Linuxin välillä](#vaihtaminen)
+- [Virheilmoitukset](#virheilmoitukset)
+
 ---
 
 ## Mitä tämä on
@@ -16,11 +28,13 @@ Boksiin asennetaan Alpine Linux, ja sen voi bootata USB-tikulta.
 
 ## Mitä tarvitset
 
-- Elisa Viihde -boksi (Netgem N7950)
-- TTL-sarja-adapteri (3.3V)
-- Paperclipit (tai hyppylangat)
-- Tietokone (Linux)
-- 8GB+ USB-tikku
+| Tarvike | Selitys |
+|---------|---------|
+| Elisa Viihde -boksi (Netgem N7950) | Projektiin tarvittava laite |
+| TTL-sarja-adapteri (3.3V) | Yhteys tietokoneen ja boksin välille |
+| Paperclipit (tai hyppylangat) | UART-pinnien kytkentä |
+| Tietokone (Linux) | Nobara, Ubuntu, tms. |
+| 8GB+ USB-tikku | Alpine Linuxin asennus |
 
 ---
 
@@ -33,9 +47,11 @@ Boksiin asennetaan Alpine Linux, ja sen voi bootata USB-tikulta.
 5. Pysäytä U-Boot
 6. Boottaa Alpine USB:ltä
 
+Katso tarkemmat ohjeet [index.html](index.html):sta.
+
 ---
 
-## Vaihda Elisan ja Linuxin välillä
+## Vaihtaminen Elisan ja Linuxin välillä
 
 | Mitä haluat | Mitä teet |
 |-------------|-----------|
@@ -44,18 +60,19 @@ Boksiin asennetaan Alpine Linux, ja sen voi bootata USB-tikulta.
 
 ---
 
-## Status
+## Virheilmoitukset
 
-- [x] UART-pinnit löydetty
-- [x] U-Boot pysäytetty
-- [x] Alpine Linux bootattu USB:ltä
-- [ ] Pysyvä asennus (tutkitaan)
+| Ongelma | Ratkaisu |
+|---------|----------|
+| Ei tekstiä terminaalissa | Vaihda TX ja RX keskenään |
+| Roskamerkkejä | Kokeile baud-nopeutta 57600 tai 9600 |
+| Paperclipit liikkuvat | Kiinnitä ne teipillä |
 
 ---
 
 ## Lisenssi
 
-MIT
+MIT License – katso [LICENSE](LICENSE)-tiedosto.
 
 ---
 
